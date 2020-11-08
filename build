@@ -1,21 +1,19 @@
 pipeline{
     agent any
+    
     environment{
-      PATH = "/usr/local/Cellar/maven/3.6.3_1/libexec/bin:$PATH"
+        PATH = "/usr/local/Cellar/maven/3.6.3_1/libexec/bin:$PATH"
     }
     stages{
-      stage("GIT Checkout"){
-        steps{
-        git credentialsId: 'GIT_CREDENTIALS', url: 'https://github.com/sreekanthadari/spring-boot-mongo-docker.git'
+        stage("GIT Checkout"){
+            steps{
+                git credentialsId: 'GIT_CREDENTIALS', url: 'https://github.com/sreekanthadari/spring-boot-mongo-docker.git'
+            }
         }
-      }
-      stage("mvn Build){
-      steps{
-      sh "mvn clean package"
-      }
-      }
-      
+        stage("MVN Build"){
+            steps{
+                sh "mvn clean package"
+            }
+        }
     }
-      
-      
 }
